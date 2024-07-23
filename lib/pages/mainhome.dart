@@ -62,7 +62,14 @@ class _MainHomeState extends State<MainHome> {
       canPop: false,
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 246, 246, 246),
-        appBar: AppBar(),
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: _signOut,
+            ),
+          ],
+        ),
         drawer: Drawer(
           child: ListView(
             children: [
@@ -75,18 +82,12 @@ class _MainHomeState extends State<MainHome> {
               ListTile(
                 title: const Text('testing area'),
                 onTap: () {
-                  Navigator.pushNamed(context, '/testing');
+                  Navigator.pushNamed(context, '/fav');
                 },
               ),
               const SizedBox(
                 height: 5.0,
-              ),
-              ListTile(
-                title: const Text('testing area'),
-                onTap: () {
-                  Navigator.pushNamed(context, '/testing1');
-                },
-              ),
+              )
             ],
           ),
         ),

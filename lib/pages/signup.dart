@@ -258,6 +258,7 @@ class _SignUpState extends State<SignUp> {
                                     child: SizedBox(
                                       width: 240.0,
                                       child: ListTile(
+                                        contentPadding: const EdgeInsets.all(0),
                                         onTap: () {
                                           _signInWithGoogle();
                                         },

@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:gfourproject/data/data_barrel.dart';
+import 'package:gfourproject/pages/pages_barrel.dart';
 
-class Favorites extends StatelessWidget {
-  const Favorites({super.key});
+class Daily extends StatelessWidget {
+  const Daily({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final songClass = SongClass();
     final provider = FavoriteProvider.of(context);
-    final songsTitles = provider.songsTitles;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorites'),
+        title: const Text('All Songs'),
       ),
       body: ListView.builder(
-        itemCount: songsTitles.length,
+        itemCount: songClass.songList.length,
         itemBuilder: (context, index) {
-          final title = songsTitles[index];
-          final song = provider.getSongsByTitle(title);
+          final song = songClass.songList[index];
+          final songTitle = song.song;
 
           return ListTile(
             contentPadding: const EdgeInsets.fromLTRB(0, 0, 16, 8),
@@ -27,18 +28,27 @@ class Favorites extends StatelessWidget {
               width: 70.0,
             ),
             onTap: () {},
-            title: Text(song.song),
+            title: Text(songTitle),
             subtitle: Text(song.artist),
             trailing: IconButton(
               onPressed: () {
-                provider.toggleFavorite(song.song);
+                provider.toggleFavorite(songTitle);
               },
-              icon: provider.isExist(song.song)
+              icon: provider.isExist(songTitle)
                   ? const Icon(Icons.favorite, color: Colors.red)
                   : const Icon(Icons.favorite_border),
             ),
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          final route = MaterialPageRoute(
+            builder: (context) => const Favorites(),
+          );
+          Navigator.push(context, route);
+        },
+        label: const Text('Favorites'),
       ),
     );
   }

@@ -8,3 +8,4 @@ export 'mainhome.dart';
 export 'your_library.dart';
 export 'your_favorites.dart';
 export 'home_nav.dart';
+export 'daily.dart';
