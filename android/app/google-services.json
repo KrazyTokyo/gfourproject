@@ -12,7 +12,20 @@
           "package_name": "com.example.gfourproject"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1015649823289-es59bercor5trmmjq05bdnf9p5ublqeu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gfourproject",
+            "certificate_hash": "253ef0f5c264ce49ca035a5b0139880a2b4457ef"
+          }
+        },
+        {
+          "client_id": "1015649823289-2u5nggd118gcj30rrv588474553q60o0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCFBNMj2iD-YzFJt1jzRa-IQYbZQQjwUSg"
@@ -20,10 +33,29 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015649823289-2u5nggd118gcj30rrv588474553q60o0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1015649823289-b7rra9040unpsn60latb1ce31ap36801.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gfourproject"
+              }
+            }
+          ]
         }
       }
     }
   ],
-  "configuration_version": "1"
+  "configuration_version": "1",
+  "installed": {
+    "client_id": "1015649823289-es59bercor5trmmjq05bdnf9p5ublqeu.apps.googleusercontent.com",
+    "project_id": "gfourproject-1e832",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs"
+  }
 }
