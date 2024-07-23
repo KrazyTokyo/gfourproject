@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1015649823289",
+    "project_id": "gfourproject-1e832",
+    "storage_bucket": "gfourproject-1e832.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015649823289:android:36512434b8256f9d7bbbe8",
+        "android_client_info": {
+          "package_name": "com.example.gfourproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFBNMj2iD-YzFJt1jzRa-IQYbZQQjwUSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
