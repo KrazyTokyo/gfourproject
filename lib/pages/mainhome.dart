@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gfourproject/data/data_barrel.dart';
 import 'package:gfourproject/pages/pages_barrel.dart';
 import 'package:gfourproject/util/util_barrel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,7 +55,6 @@ class _MainHomeState extends State<MainHome> {
       email = args;
     }
 
-    // Strip domain part for certain email addresses
     if (email.endsWith('@gmail.com') ||
         email.endsWith('@g.batstate-u.edu.ph')) {
       email = email.split('@')[0];
@@ -146,25 +148,17 @@ class _MainHomeState extends State<MainHome> {
     );
   }
 
-  void _logInAgain() async {
-    FirebaseAuth.instance.signOut();
-    Navigator.pushReplacementNamed(context, '/');
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.clear();
-  }
-
-  void _signUpAnother() async {
-    FirebaseAuth.instance.signOut();
-    Navigator.pushReplacementNamed(context, '/signup');
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.clear();
-  }
-
   void _signOut() async {
     FirebaseAuth.instance.signOut();
-    Navigator.pushReplacementNamed(context, '/');
-    showToast(message: "Successfully signed out");
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();
+
+    final provider = FavoriteProvider.of(context, listen: false);
+    await provider.clearFavorites();
+
+    Navigator.pushReplacementNamed(context, '/');
+
+    showToast(message: "Successfully signed out");
   }
 }

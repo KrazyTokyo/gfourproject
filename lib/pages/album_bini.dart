@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gfourproject/data/data_barrel.dart'; // Adjust the import as necessary
-import 'package:gfourproject/pages/pages_barrel.dart'; // Adjust the import as necessary
+import 'package:gfourproject/data/data_barrel.dart';
+import 'package:gfourproject/pages/pages_barrel.dart';
 
 class Bini extends StatelessWidget {
   const Bini({super.key});

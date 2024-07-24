@@ -7,13 +7,11 @@ class Jmh extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Retrieve the arguments passed to this route
     final bool isArtist =
         ModalRoute.of(context)?.settings.arguments as bool? ?? false;
     final songClass = SongClass();
     final provider = FavoriteProvider.of(context);
 
-    // Filter songs by the artist "John Michael Howell"
     final filteredSongList = songClass.songList
         .where((song) => song.artist == 'John Michael Howell')
         .toList();

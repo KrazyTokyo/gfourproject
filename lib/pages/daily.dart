@@ -7,8 +7,6 @@ class Daily extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Retrieve the arguments passed to this route
-
     final songClass = SongClass();
     final provider = FavoriteProvider.of(context);
 

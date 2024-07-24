@@ -72,6 +72,7 @@ flutter:
     - lib/assets/images/jmh/
     - lib/assets/images/bruno_mars/
     - lib/assets/images/justin_bieber/
+    - lib/assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

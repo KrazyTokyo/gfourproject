@@ -12,7 +12,7 @@ class SingleSong extends StatefulWidget {
   });
 
   @override
-  _SingleSongState createState() => _SingleSongState();
+  State<SingleSong> createState() => _SingleSongState();
 }
 
 class _SingleSongState extends State<SingleSong> {
