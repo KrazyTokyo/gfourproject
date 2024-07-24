@@ -7,12 +7,19 @@ class Daily extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Retrieve the arguments passed to this route
+
     final songClass = SongClass();
     final provider = FavoriteProvider.of(context);
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 10, 10, 10),
       appBar: AppBar(
-        title: const Text('All Songs'),
+        toolbarHeight: 50.0,
+        backgroundColor: const Color.fromARGB(225, 1, 223, 252),
+        title: const Text(
+          'All Songs',
+        ),
       ),
       body: ListView.builder(
         itemCount: songClass.songList.length,
@@ -27,15 +34,32 @@ class Daily extends StatelessWidget {
               height: 70.0,
               width: 70.0,
             ),
-            onTap: () {},
-            title: Text(songTitle),
-            subtitle: Text(song.artist),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SingleSong(
+                    song: song,
+                    provider: provider,
+                  ),
+                ),
+              );
+            },
+            title: Text(
+              songTitle,
+              style: const TextStyle(color: Colors.white),
+            ),
+            subtitle: Text(
+              song.artist,
+              style: const TextStyle(color: Colors.white),
+            ),
             trailing: IconButton(
               onPressed: () {
                 provider.toggleFavorite(songTitle);
               },
               icon: provider.isExist(songTitle)
-                  ? const Icon(Icons.favorite, color: Colors.red)
+                  ? const Icon(Icons.favorite,
+                      color: Color.fromARGB(255, 1, 223, 252))
                   : const Icon(Icons.favorite_border),
             ),
           );

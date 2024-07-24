@@ -265,44 +265,6 @@ class _LoginState extends State<Login> {
   }
 
   // android: 1000242128101-8foqe2q5alk28akjm5r6q4aptb2iut7l.apps.googleusercontent.com
-  // _signInWithGoogle() async {
-  //   final GoogleSignIn googleSignIn = GoogleSignIn(
-  //       clientId:
-  //           '1000242128101-qp67crfo5ctdbiaqlhce88gn7uo9cr3h.apps.googleusercontent.com');
-
-  //   try {
-  //     final GoogleSignInAccount? googleSignInAccount =
-  //         await googleSignIn.signIn();
-
-  //     if (googleSignInAccount != null && mounted) {
-  //       final GoogleSignInAuthentication googleSignInAuthentication =
-  //           await googleSignInAccount.authentication;
-
-  //       final AuthCredential credential = GoogleAuthProvider.credential(
-  //         idToken: googleSignInAuthentication.idToken,
-  //         accessToken: googleSignInAuthentication.accessToken,
-  //       );
-
-  //       // String? email = googleSignInAccount.email;
-
-  //       UserCredential userCredential =
-  //           await _firebaseAuth.signInWithCredential(credential);
-  //       User? user = userCredential.user;
-  //       if (user != null && mounted) {
-  //         SharedPreferences prefs = await SharedPreferences.getInstance();
-  //         await prefs.setString("userEmail", user.email.toString());
-  //         showToast(message: "Successfully signed in with Google");
-  //         // ignore: use_build_context_synchronously
-  //         Navigator.pushReplacementNamed(context, "/mainhome", arguments: {
-  //           'email': user.email,
-  //           'additionalString': 'You signed in with Google'
-  //         });
-  //       }
-  //     }
-  //   } catch (e) {
-  //     showToast(message: "Some error occurred with Google sign-in");
-  //   }
-  // }
   signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn(
         clientId:
@@ -329,8 +291,6 @@ class _LoginState extends State<Login> {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setString("userEmail", user.email.toString());
           showToast(message: "Successfully signed in with Google");
-
-          // Using GetX navigation
           Navigator.pushReplacementNamed(context, "/mainhome",
               arguments: user.email);
         }
@@ -356,37 +316,4 @@ class _LoginState extends State<Login> {
       debugPrint('login else');
     }
   }
-
-//del
-  // Future<void> signInWithGoogle() async {
-  //   final GoogleSignIn googleSignIn = GoogleSignIn(
-  //     clientId:
-  //         '1015649823289-2u5nggd118gcj30rrv588474553q60o0.apps.googleusercontent.com',
-  //   );
-
-  //   try {
-  //     final GoogleSignInAccount? googleSignInAccount =
-  //         await googleSignIn.signIn();
-
-  //     if (googleSignInAccount != null) {
-  //       final GoogleSignInAuthentication googleSignInAuthentication =
-  //           await googleSignInAccount.authentication;
-
-  //       final AuthCredential credential = GoogleAuthProvider.credential(
-  //         idToken: googleSignInAuthentication.idToken,
-  //         accessToken: googleSignInAuthentication.accessToken,
-  //       );
-
-  //       UserCredential userCredential =
-  //           await _firebaseAuth.signInWithCredential(credential);
-  //       String email = userCredential.user?.email ?? "";
-
-  //       await _firebaseAuth.signInWithCredential(credential);
-  //       // ignore: use_build_context_synchronously
-  //       Navigator.pushReplacementNamed(context, "/mainhome", arguments: email);
-  //     }
-  //   } catch (e) {
-  //     debugPrint('Some error occurred: $e');
-  //   }
-  // }
 }

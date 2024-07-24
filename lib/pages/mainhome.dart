@@ -61,8 +61,10 @@ class _MainHomeState extends State<MainHome> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 246, 246, 246),
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         appBar: AppBar(
+          toolbarHeight: 50.0,
+          backgroundColor: const Color.fromARGB(225, 1, 223, 252),
           actions: [
             IconButton(
               icon: const Icon(Icons.logout),
@@ -71,16 +73,23 @@ class _MainHomeState extends State<MainHome> {
           ],
         ),
         drawer: Drawer(
+          backgroundColor: const Color.fromARGB(255, 32, 32, 32),
           child: ListView(
             children: [
               SizedBox(
                 height: 55,
                 child: DrawerHeader(
-                  child: Text(email),
+                  child: Text(
+                    email,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
               ListTile(
-                title: const Text('testing area'),
+                title: const Text(
+                  'testing area',
+                  style: TextStyle(color: Colors.white),
+                ),
                 onTap: () {
                   Navigator.pushNamed(context, '/fav');
                 },
@@ -92,25 +101,46 @@ class _MainHomeState extends State<MainHome> {
           ),
         ),
         body: _screens[currentIndex],
-        bottomNavigationBar: NavigationBar(
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.home_outlined),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: const Color.fromARGB(118, 0, 0, 0).withOpacity(0.5),
+          currentIndex: currentIndex,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(0.60),
+          selectedFontSize: 14,
+          unselectedFontSize: 14,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_outlined,
+                color: currentIndex == 0
+                    ? Colors.white
+                    : Colors.white.withOpacity(0.60),
+              ),
+              activeIcon: const Icon(
+                Icons.home_filled,
+                color: Colors.white,
+              ),
               label: 'Home',
             ),
-            NavigationDestination(
-              icon: Icon(Icons.library_music),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.library_music_outlined,
+                color: currentIndex == 1
+                    ? Colors.white
+                    : Colors.white.withOpacity(0.60),
+              ),
+              activeIcon: const Icon(
+                Icons.library_music,
+                color: Colors.white,
+              ),
               label: 'Library',
-            )
+            ),
           ],
-          onDestinationSelected: (int index) {
-            setState(
-              () {
-                currentIndex = index;
-              },
-            );
-          },
-          selectedIndex: currentIndex,
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gfourproject/widgets/field.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../util/util_barrel.dart';
 
@@ -83,6 +84,8 @@ class _SignUpState extends State<SignUp> {
       isSigningUp = false;
     });
     if (user != null && mounted) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString("userEmail", user.email.toString());
       showToast(message: "User is successfully created");
       Navigator.pushReplacementNamed(context, "/mainhome", arguments: email);
     } else {
@@ -253,14 +256,14 @@ class _SignUpState extends State<SignUp> {
                                             255, 255, 255, 255),
                                         minimumSize: const Size(105, 45)),
                                     onPressed: () {
-                                      _signInWithGoogle();
+                                      signInWithGoogle();
                                     },
                                     child: SizedBox(
                                       width: 240.0,
                                       child: ListTile(
                                         contentPadding: const EdgeInsets.all(0),
                                         onTap: () {
-                                          _signInWithGoogle();
+                                          signInWithGoogle();
                                         },
                                         leading: Image.asset(
                                           'lib/assets/images/GLogo.png',
@@ -292,7 +295,7 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  _signInWithGoogle() async {
+  signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn(
         clientId:
             '1015649823289-2u5nggd118gcj30rrv588474553q60o0.apps.googleusercontent.com');
@@ -301,7 +304,7 @@ class _SignUpState extends State<SignUp> {
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
 
-      if (googleSignInAccount != null && mounted) {
+      if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
 
@@ -310,15 +313,21 @@ class _SignUpState extends State<SignUp> {
           accessToken: googleSignInAuthentication.accessToken,
         );
 
-        String? email = googleSignInAccount.email;
+        UserCredential userCredential =
+            await _firebaseAuth.signInWithCredential(credential);
+        User? user = userCredential.user;
 
-        await _firebaseAuth.signInWithCredential(credential);
-        // ignore: use_build_context_synchronously
-        Navigator.pushReplacementNamed(context, "/mainhome", arguments: email);
+        if (user != null && mounted) {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString("userEmail", user.email.toString());
+          showToast(message: "Successfully signed in with Google");
+          Navigator.pushReplacementNamed(context, "/mainhome",
+              arguments: user.email);
+        }
       }
     } catch (e) {
-      // showToast(message: "some error occured $e");
-      debugPrint(e.toString());
+      showToast(
+          message: "Some error occurred with Google sign-in: ${e.toString()}");
     }
   }
 }

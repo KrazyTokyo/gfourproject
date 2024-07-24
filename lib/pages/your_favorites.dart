@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gfourproject/data/data_barrel.dart';
+import 'package:gfourproject/pages/pages_barrel.dart';
 
 class Favorites extends StatelessWidget {
   const Favorites({super.key});
@@ -10,8 +11,13 @@ class Favorites extends StatelessWidget {
     final songsTitles = provider.songsTitles;
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 10, 10, 10),
       appBar: AppBar(
-        title: const Text('Favorites'),
+        toolbarHeight: 50.0,
+        backgroundColor: const Color.fromARGB(225, 1, 223, 252),
+        title: const Text(
+          'Liked Songs',
+        ),
       ),
       body: ListView.builder(
         itemCount: songsTitles.length,
@@ -26,15 +32,32 @@ class Favorites extends StatelessWidget {
               height: 70.0,
               width: 70.0,
             ),
-            onTap: () {},
-            title: Text(song.song),
-            subtitle: Text(song.artist),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SingleSong(
+                    song: song,
+                    provider: provider,
+                  ),
+                ),
+              );
+            },
+            title: Text(
+              song.song,
+              style: const TextStyle(color: Colors.white),
+            ),
+            subtitle: Text(
+              song.artist,
+              style: const TextStyle(color: Colors.white),
+            ),
             trailing: IconButton(
               onPressed: () {
                 provider.toggleFavorite(song.song);
               },
               icon: provider.isExist(song.song)
-                  ? const Icon(Icons.favorite, color: Colors.red)
+                  ? const Icon(Icons.favorite,
+                      color: Color.fromARGB(255, 1, 223, 252))
                   : const Icon(Icons.favorite_border),
             ),
           );
