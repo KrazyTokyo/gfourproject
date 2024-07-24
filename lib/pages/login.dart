@@ -266,12 +266,33 @@ class _LoginState extends State<Login> {
   }
 
   // android: 1000242128101-8foqe2q5alk28akjm5r6q4aptb2iut7l.apps.googleusercontent.com
+
+  _init() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final email = prefs.getString("userEmail");
+    if (email != null) {
+      debugPrint('Email: $email');
+      debugPrint('login if');
+      Navigator.pushReplacementNamed(context, '/mainhome', arguments: {
+        'email': email,
+        'additionalString': 'You are already logged in'
+      });
+    } else if (email == 'No email provided') {
+      Get.offAll(const Login());
+      debugPrint('login else');
+    }
+  }
+
   signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn(
-        clientId:
-            '1015649823289-2u5nggd118gcj30rrv588474553q60o0.apps.googleusercontent.com');
+      clientId:
+          '1015649823289-2u5nggd118gcj30rrv588474553q60o0.apps.googleusercontent.com',
+    );
 
     try {
+      // Sign out from Google to ensure the user gets prompted to choose an account
+      await googleSignIn.signOut();
+
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
 
@@ -299,22 +320,6 @@ class _LoginState extends State<Login> {
     } catch (e) {
       showToast(
           message: "Some error occurred with Google sign-in: ${e.toString()}");
-    }
-  }
-
-  _init() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final email = prefs.getString("userEmail");
-    if (email != null) {
-      debugPrint('Email: $email');
-      debugPrint('login if');
-      Navigator.pushReplacementNamed(context, '/mainhome', arguments: {
-        'email': email,
-        'additionalString': 'You are already logged in'
-      });
-    } else if (email == 'No email provided') {
-      Get.offAll(const Login());
-      debugPrint('login else');
     }
   }
 }

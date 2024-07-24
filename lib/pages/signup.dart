@@ -299,10 +299,14 @@ class _SignUpState extends State<SignUp> {
 
   signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn(
-        clientId:
-            '1015649823289-2u5nggd118gcj30rrv588474553q60o0.apps.googleusercontent.com');
+      clientId:
+          '1015649823289-2u5nggd118gcj30rrv588474553q60o0.apps.googleusercontent.com',
+    );
 
     try {
+      // Sign out from Google to ensure the user gets prompted to choose an account
+      await googleSignIn.signOut();
+
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
 
