@@ -98,7 +98,7 @@ class _LoginState extends State<Login> {
                             child: Column(
                               children: [
                                 const Text(
-                                  'Log Into Application',
+                                  'Log Into JamSpot',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.0,

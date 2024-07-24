@@ -132,7 +132,7 @@ class _SignUpState extends State<SignUp> {
                             child: Column(
                               children: [
                                 const Text(
-                                  'Sign Up in Application',
+                                  'Sign Up in JamSpot',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20.0,

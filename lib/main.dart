@@ -36,7 +36,8 @@ class MyApp extends StatelessWidget {
           '/lib': (context) => const Library(),
           '/fav': (context) => const Favorites(),
           '/homenav': (context) => const HomeNav(),
-          '/daily': (context) => const Daily()
+          '/daily': (context) => const Daily(),
+          '/profile': (context) => const Profile(),
         },
       ),
     );

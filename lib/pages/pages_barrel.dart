@@ -10,3 +10,4 @@ export 'your_favorites.dart';
 export 'home_nav.dart';
 export 'daily.dart';
 export 'songprof.dart';
+export 'profile.dart';

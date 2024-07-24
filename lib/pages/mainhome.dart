@@ -23,6 +23,7 @@ class _MainHomeState extends State<MainHome> {
   ];
   String email = 'No email provided';
   String additionalString = 'This is your first time logged on';
+  late String fullEmail;
 
   @override
   void initState() {
@@ -47,14 +48,16 @@ class _MainHomeState extends State<MainHome> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments;
+    //final String uemail;
 
     if (args is Map<String, dynamic>) {
-      email = args['email'] ?? email;
+      fullEmail = args['email'] ?? fullEmail;
       additionalString = args['additionalString'] ?? additionalString;
     } else if (args is String) {
-      email = args;
+      fullEmail = args;
     }
 
+    email = fullEmail;
     if (email.endsWith('@gmail.com') ||
         email.endsWith('@g.batstate-u.edu.ph')) {
       email = email.split('@')[0];
@@ -65,6 +68,7 @@ class _MainHomeState extends State<MainHome> {
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         appBar: AppBar(
+          title: const Text('JamSpot'),
           toolbarHeight: 50.0,
           backgroundColor: const Color.fromARGB(225, 1, 223, 252),
           actions: [
@@ -88,12 +92,17 @@ class _MainHomeState extends State<MainHome> {
                 ),
               ),
               ListTile(
+                leading: const Icon(Icons.manage_accounts),
                 title: const Text(
-                  'testing area',
+                  'Check Profile',
                   style: TextStyle(color: Colors.white),
                 ),
                 onTap: () {
-                  Navigator.pushNamed(context, '/fav');
+                  Navigator.pushNamed(
+                    context,
+                    '/profile',
+                    arguments: {'email': fullEmail},
+                  );
                 },
               ),
               const SizedBox(
