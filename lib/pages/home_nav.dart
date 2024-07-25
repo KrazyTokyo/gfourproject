@@ -26,7 +26,7 @@ class _HomeNavState extends State<HomeNav> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GridView.count(
-                childAspectRatio: 250 / 100,
+                childAspectRatio: 310 / 100,
                 shrinkWrap: true,
                 primary: false,
                 padding: const EdgeInsets.fromLTRB(10.0, 13, 10, 10),

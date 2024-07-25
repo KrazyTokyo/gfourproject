@@ -43,6 +43,7 @@ dependencies:
   get: ^4.6.6
   google_fonts: ^6.2.1
   material_symbols_icons: ^4.2771.0
+  audioplayers: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,7 @@ flutter:
     - lib/assets/images/bruno_mars/
     - lib/assets/images/justin_bieber/
     - lib/assets/images/
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
