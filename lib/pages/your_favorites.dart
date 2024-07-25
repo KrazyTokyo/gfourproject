@@ -70,7 +70,7 @@ class Favorites extends StatelessWidget {
                                       s.audioPath
                                     ])
                                 .toList(),
-                            initialIndex: index,
+                            songTitle: song.song,
                           ),
                         ),
                       );

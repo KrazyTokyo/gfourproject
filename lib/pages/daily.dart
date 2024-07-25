@@ -69,7 +69,7 @@ class Daily extends StatelessWidget {
                                       s.audioPath
                                     ])
                                 .toList(),
-                            initialIndex: index,
+                            songTitle: songTitle,
                           ),
                         ),
                       );

@@ -122,7 +122,7 @@ class Bini extends StatelessWidget {
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              IconButton.filled(
+                              IconButton(
                                   onPressed: () {
                                     Navigator.push(
                                       context,
@@ -136,7 +136,7 @@ class Bini extends StatelessWidget {
                                                     s.audioPath
                                                   ])
                                               .toList(),
-                                          initialIndex: index,
+                                          songTitle: songTitle,
                                         ),
                                       ),
                                     );
@@ -214,7 +214,7 @@ class Bini extends StatelessWidget {
                                                     s.audioPath
                                                   ])
                                               .toList(),
-                                          initialIndex: index,
+                                          songTitle: songTitle,
                                         ),
                                       ),
                                     );

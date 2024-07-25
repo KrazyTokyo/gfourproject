@@ -109,14 +109,39 @@ class Jb extends StatelessWidget {
                             song.artist,
                             style: const TextStyle(color: Colors.white),
                           ),
-                          trailing: IconButton(
-                            onPressed: () {
-                              provider.toggleFavorite(songTitle);
-                            },
-                            icon: provider.isExist(songTitle)
-                                ? const Icon(Icons.favorite,
-                                    color: Color.fromARGB(255, 1, 223, 252))
-                                : const Icon(Icons.favorite_border),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => MyPlayer(
+                                          songList: songClass.songList
+                                              .map((s) => [
+                                                    s.song,
+                                                    s.artist,
+                                                    s.imagePath,
+                                                    s.audioPath
+                                                  ])
+                                              .toList(),
+                                          songTitle: songTitle,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  icon: const Icon(Icons.play_arrow)),
+                              IconButton(
+                                onPressed: () {
+                                  provider.toggleFavorite(songTitle);
+                                },
+                                icon: provider.isExist(songTitle)
+                                    ? const Icon(Icons.favorite,
+                                        color: Color.fromARGB(255, 1, 223, 252))
+                                    : const Icon(Icons.favorite_border),
+                              ),
+                            ],
                           ),
                         );
                       },
@@ -179,7 +204,7 @@ class Jb extends StatelessWidget {
                                                     s.audioPath
                                                   ])
                                               .toList(),
-                                          initialIndex: index,
+                                          songTitle: songTitle,
                                         ),
                                       ),
                                     );

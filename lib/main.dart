@@ -11,7 +11,19 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        // ChangeNotifierProvider(
+        //   create: (context) => MediaPlayerProvider(),
+        // ),
+        ChangeNotifierProvider(
+          create: (context) => FavoriteProvider(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,27 +31,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => FavoriteProvider(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Basics',
-        initialRoute: '/',
-        routes: {
-          '/': (context) => const Login(),
-          '/signup': (context) => const SignUp(),
-          '/mainhome': (context) => const MainHome(),
-          '/bini': (context) => const Bini(),
-          '/bm': (context) => const Bm(),
-          '/jb': (context) => const Jb(),
-          '/jmh': (context) => const Jmh(),
-          '/lib': (context) => const Library(),
-          '/fav': (context) => const Favorites(),
-          '/homenav': (context) => const HomeNav(),
-          '/daily': (context) => const Daily(),
-          '/profile': (context) => const Profile(),
-        },
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Basics',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Login(),
+        '/signup': (context) => const SignUp(),
+        '/mainhome': (context) => const MainHome(),
+        '/bini': (context) => const Bini(),
+        '/bm': (context) => const Bm(),
+        '/jb': (context) => const Jb(),
+        '/jmh': (context) => const Jmh(),
+        '/lib': (context) => const Library(),
+        '/fav': (context) => const Favorites(),
+        '/homenav': (context) => const HomeNav(),
+        '/daily': (context) => const Daily(),
+        '/profile': (context) => const Profile(),
+      },
     );
   }
 }

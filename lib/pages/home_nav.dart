@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gfourproject/data/data_barrel.dart';
 import 'package:gfourproject/pages/pages_barrel.dart';
+import 'package:gfourproject/widgets/bottom.dart';
+import 'package:provider/provider.dart';
 
 class HomeNav extends StatefulWidget {
   const HomeNav({super.key});
@@ -12,6 +14,7 @@ class HomeNav extends StatefulWidget {
 class _HomeNavState extends State<HomeNav> {
   @override
   Widget build(BuildContext context) {
+    // final mediaPlayer = Provider.of<MediaPlayerProvider>(context);
     final songClass = SongClass();
     final provider = FavoriteProvider.of(context);
 
@@ -396,7 +399,8 @@ class _HomeNavState extends State<HomeNav> {
                     )
                   ],
                 ),
-              )
+              ),
+              // const BottomMediaPlayer()
             ],
           ),
         ),
